@@ -1,4 +1,6 @@
-﻿using UsersManager.View;
+﻿using System.Linq;
+using System.Windows.Controls;
+using UsersManager.View;
 using UsersManager.Model;
 
 namespace UsersManager.Presenters
@@ -17,7 +19,12 @@ namespace UsersManager.Presenters
 
         private void InitializeView()
         {
-            
+            _view.MainDataGrid.DataContext = _model.GetUsers();
+            var categories = _model.GetCategories().Select();
+            var categoriesList = (from c in categories
+                select new {Name = c.ItemArray[1]});
+
+            _view.CategoriesListBox.ItemsSource = categoriesList;
         }
 
         public void AddUser()

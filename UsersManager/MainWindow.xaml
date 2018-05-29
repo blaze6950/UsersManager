@@ -32,7 +32,7 @@
                     <ListBox Name="ListBoxCategories">
                         <ListBox.ItemTemplate>
                             <HierarchicalDataTemplate>
-                                <CheckBox Content="{Binding Item}" IsChecked="{Binding Value}" Checked="CheckBoxCategories_StateChanged" Unchecked="CheckBoxCategories_StateChanged"/>
+                                <CheckBox Content="{Binding Name}" IsChecked="{Binding Value}" Checked="CheckBoxCategories_StateChanged" Unchecked="CheckBoxCategories_StateChanged"/>
                             </HierarchicalDataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
