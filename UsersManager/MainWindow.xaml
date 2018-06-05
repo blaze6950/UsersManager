@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UsersManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="530">
+        Title="UsersManager" Height="450" Width="530">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -38,8 +38,8 @@
                     </ListBox>
                 </GroupBox>
             </StackPanel>
-            
-            <DataGrid Grid.Column="1" Name="DataGrid"></DataGrid>
+
+            <DataGrid Name="DataGrid" Margin="5" Grid.Column="1"></DataGrid>
             
         </Grid>
         

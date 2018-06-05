@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using UsersManager.View;
 using UsersManager.Model;
@@ -19,7 +20,7 @@ namespace UsersManager.Presenters
 
         private void InitializeView()
         {
-            _view.MainDataGrid.DataContext = _model.GetUsers();
+            _view.MainDataGrid.ItemsSource = _model.GetUsers().AsDataView();
             var categories = _model.GetCategories().Select();
             var categoriesList = (from c in categories
                 select new {Name = c.ItemArray[1]});

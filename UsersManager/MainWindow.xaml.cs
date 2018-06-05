@@ -47,5 +47,10 @@ namespace UsersManager
 
         public DataGrid MainDataGrid { get => DataGrid; set => DataGrid = value; }
         public ListBox CategoriesListBox { get => ListBoxCategories; set => ListBoxCategories = value; }
+
+        private void MyListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
