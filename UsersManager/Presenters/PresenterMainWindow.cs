@@ -79,6 +79,7 @@ namespace UsersManager.Presenters
                 select new Category{ Name = (string)c.ItemArray[1], Id = (int)c.ItemArray[0] });
             ChooseCategory categoryWindow = new ChooseCategory(cellInfo, categoriesList);
             categoryWindow.ShowDialog();
+            _model.RefreshData();
         }
     }
 }
