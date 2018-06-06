@@ -55,10 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CategoriesWindow.xaml.cs">
+      <DependentUpon>CategoriesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Presenters\IPresenterMainWindow.cs" />
     <Compile Include="Presenters\PresenterMainWindow.cs" />
     <Compile Include="View\IViewMainWindow.cs" />
+    <Page Include="CategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

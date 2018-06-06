@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
+using System.Windows.Documents;
 
 namespace UsersManager.Model
 {
-    public class Model
+    public class Model : IDisposable
     {
         private DataSet _usersDataSet;
         private DataSet _categoriesDataSet;
@@ -72,6 +77,74 @@ namespace UsersManager.Model
         public DataTable GetUsers()
         {
             return _usersDataSet.Tables["Users"];
+        }
+
+        public void CommitChanges()
+        {
+            _usersAdapter.Update(_usersDataSet, "Users");
+            _categoriesAdapter.Update(_categoriesDataSet, "UserCategories");
+        }
+
+        public void RefreshData()
+        {
+            CommitChanges();
+        }
+
+        public DataTable GetUserCategory(List<int> id)
+        {
+            _usersDataSet.Clear();
+            if (id.Count > 0)
+            {
+                DbCommand command = _factory.CreateCommand();
+                command.Connection = _connection;
+
+                command.CommandText = $"SELECT * FROM Users Where Id_Category IN (";
+                int i = 0;
+                foreach (var id1 in id)
+                {
+                    if (i == 0)
+                    {
+                        command.CommandText += id1;
+                    }
+                    else
+                    {
+                        command.CommandText += ", " + id1;
+                    }
+                    i++;
+                }
+                command.CommandText += ")";
+
+
+                DbCommandBuilder builder = _factory.CreateCommandBuilder(); // for what?
+                builder.DataAdapter = _usersAdapter;
+
+                _usersAdapter.SelectCommand = command;
+                _usersAdapter.Fill(_usersDataSet, "Users");
+            }
+            else
+            {
+                DbCommand command = _factory.CreateCommand();
+                command.Connection = _connection;
+                command.CommandText = "SELECT * FROM Users";
+
+                DbCommandBuilder builder = _factory.CreateCommandBuilder(); // for what?
+                builder.DataAdapter = _usersAdapter;
+
+                _usersAdapter.SelectCommand = command;
+
+                _usersAdapter.Fill(_usersDataSet, "Users");
+            }
+            return _usersDataSet.Tables["Users"];
+        }
+
+        public void Dispose()
+        {
+            CommitChanges();
+            _usersDataSet?.Dispose();
+            _categoriesDataSet?.Dispose();
+            _usersAdapter?.Dispose();
+            _categoriesAdapter?.Dispose();
+            _connection?.Dispose();
         }
     }
 }
