@@ -59,11 +59,18 @@
       <DependentUpon>CategoriesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs" />
+    <Compile Include="ChooseCategory.xaml.cs">
+      <DependentUpon>ChooseCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model.cs" />
     <Compile Include="Presenters\IPresenterMainWindow.cs" />
     <Compile Include="Presenters\PresenterMainWindow.cs" />
     <Compile Include="View\IViewMainWindow.cs" />
     <Page Include="CategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

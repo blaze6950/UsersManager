@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace UsersManager.Presenters
 {
@@ -9,5 +10,6 @@ namespace UsersManager.Presenters
         void CategoriesCheckBox_ChangeState(List<int> category);
         void AddCategoryColumn();
         void CommitChanges();
+        void ChooseCategoryWindow(DataGridCellInfo cellInfo);
     }
 }

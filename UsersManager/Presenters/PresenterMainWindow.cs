@@ -48,7 +48,7 @@ namespace UsersManager.Presenters
             _model.RefreshData();
             var categories = _model.GetCategories().Select();
             var categoriesList = (from c in categories
-                select new { Name = c.ItemArray[1] });
+                select new Category{ Name = (string)c.ItemArray[1], Id = (int)c.ItemArray[0] });
 
             _view.CategoriesListBox.ItemsSource = categoriesList;
         }
@@ -70,6 +70,15 @@ namespace UsersManager.Presenters
         public void CommitChanges()
         {
             _model.Dispose();
+        }
+
+        public void ChooseCategoryWindow(DataGridCellInfo cellInfo)
+        {
+            var categories = _model.GetCategories().Select();
+            var categoriesList = (from c in categories
+                select new Category{ Name = (string)c.ItemArray[1], Id = (int)c.ItemArray[0] });
+            ChooseCategory categoryWindow = new ChooseCategory(cellInfo, categoriesList);
+            categoryWindow.ShowDialog();
         }
     }
 }

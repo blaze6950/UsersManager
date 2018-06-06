@@ -83,5 +83,13 @@ namespace UsersManager
             //comboBoxColumn.ItemsSource = ListBoxCategories.ItemsSource;
             
         }
+
+        private void DataGrid_OnBeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            if (DataGrid.SelectedCells[0].Column.Header.Equals("Category"))
+            {
+                _presenter.ChooseCategoryWindow(DataGrid.SelectedCells[0]);
+            }
+        }
     }
 }
